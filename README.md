@@ -1,0 +1,2 @@
+# pjStand
+Projeto de Haskell

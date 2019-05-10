@@ -20,5 +20,3 @@ main = do
               5-> putStrLn ("Ver Factura do diário "++op)
               6-> putStrLn ("Ver todas Facturas "++op)
               7-> putStrLn ("Mostrar as informações do automóvel mais vendido "++op)
-
-

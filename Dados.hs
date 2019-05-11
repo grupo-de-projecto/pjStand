@@ -12,9 +12,9 @@ escrever = do
             writeFile "info.txt" "Testar"
             putStrLn "Dados escrito"-}
             
-ler::IO()
+ler::IO [String]
 ler = do
         a <- readFile "dados.txt"
-        putStrLn a
-        
+        return (endBy ";" (show a))
+
         

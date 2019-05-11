@@ -1,6 +1,6 @@
 module Estrutura where
 
-data Tipo = Carro | Moto deriving(Show)
+data Tipo = Carro | Moto deriving(Show,Eq)
 data Marca = Volvo | Toyota | Jaguar | Bmw | Honda deriving(Show)
 data Categoria = Ligeiro | Pesado deriving(Show)
 

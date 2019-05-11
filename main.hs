@@ -1,4 +1,4 @@
-module Princioal where
+module Principal where
 
 main::IO()
 main = do

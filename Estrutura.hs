@@ -1,8 +1,8 @@
 module Estrutura where
 
 data Tipo = Carro | Moto deriving(Show,Eq)
-data Marca = Volvo | Toyota | Jaguar | Bmw | Honda deriving(Show)
-data Categoria = Ligeiro | Pesado deriving(Show)
+data Marca = Volvo | Toyota | Jaguar | Bmw | Honda deriving(Show,Eq)
+data Categoria = Ligeiro | Pesado deriving(Show,Eq)
 
 type Codigo = Int
 type Nome = String
@@ -40,3 +40,4 @@ automovel3=(3,"Mingota",12.43,Ligeiro,Toyota,Carro)
 automovel4=(4,"Teste",12.43,Ligeiro,Toyota,Moto)
 
 add = [automovel1,automovel2,automovel3,automovel4]
+

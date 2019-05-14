@@ -59,9 +59,19 @@ comprarCarro lista = do
                     putStrLn("Adicionado ao Carrinho")
                     putStrLn("1-Concluir Compra\n2-Adicionar as Compra")
                     valor<-getLine
-                    case (read valor) of
-                        1-> putStrLn (exibirFactura (lista++[(addLinhaFactura (read codigo) (retornaPreco add (read codigo)) (read qtd) ((read qtd) * (retornaPreco add (read codigo))))] ) add)
-                            
+                    case (read valor) of 
+                        1-> do 
+                            putStrLn((show(exibirFactura listaTa add))++"\nTOTAL: "++(show(total)))
+                            putStrLn("Digite O Valor Pago: ")
+                            d<-getLine
+                            verificarValorPago d total
+                            putStrLn("")
+                                    
+                            where{ 
+                                listaTa = (lista++[(addLinhaFactura (read codigo) (retornaPreco add (read codigo)) (read qtd) ((read qtd) * (retornaPreco add (read codigo))))]);
+                                total = (calculoTotal listaTa);
+                            }
+                                
                         _-> comprarCarro (lista++[(addLinhaFactura (read codigo) (retornaPreco add (read codigo)) (read qtd) ((read qtd) * (retornaPreco add (read codigo))))]  ) 
                     
                    
@@ -75,3 +85,16 @@ exibirFactura a []=[]
 exibirFactura ((c,preco,qtd,subtotal):xs) ((cod,nome,_,_,_,_):ys) = if ((show c)==(show cod)) then "COD: "++(show cod)++"---NOME: "++nome++"---QTD: "++(show qtd)++"---PRECO: "++(show preco)++"--"++(show qtd)++"X"++(show preco)++": "++(show subtotal)++"\n"++exibirFactura xs add
 else
     exibirFactura ((c,preco,qtd,subtotal):xs) ys 
+    
+    
+calculoTotal [] = 0
+calculoTotal ((_,_,_,subtotal):xs) = subtotal + calculoTotal xs
+
+verificarValorPago valor total = do if ((read valor)<total) then do
+                                        putStrLn("Erro! Digite Novamente:")
+                                        d <- getLine
+                                        verificarValorPago d total
+                                        else
+                                            putStr("TROCO: "++show((read valor)-total))
+                                  
+                                            

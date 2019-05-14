@@ -30,17 +30,3 @@ ler = do
         conteudo <- hGetContents a
         return conteudo
         hClose a
-        
-f :: String -> Int
-f = read
-
-io :: IO String
-io = getLine
-
-main :: IO ()
-main = (f `fmap` io) >>= \x -> print x
-
-
-{-ler1::IO [String]->[String]
-ler1  l= do
-        return [l]-}

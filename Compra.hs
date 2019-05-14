@@ -54,16 +54,24 @@ comprarCarro lista = do
                     qtd<-getLine
                     
                  
-                    putStrLn(show (lista++[(addLinhaFactura (read codigo) (retornaPreco add (read codigo)) (read qtd) ((read qtd) * (retornaPreco add (read codigo))))]  )) 
+                    putStrLn(show (lista++[(addLinhaFactura (read codigo) (retornaPreco add (read codigo)) (read qtd) ((read qtd) * (retornaPreco add (read codigo))))] )) 
                     
                     putStrLn("Adicionado ao Carrinho")
                     putStrLn("1-Concluir Compra\n2-Adicionar as Compra")
                     valor<-getLine
                     case (read valor) of
-                        1-> putStr("Conclui")
+                        1-> putStrLn (exibirFactura (lista++[(addLinhaFactura (read codigo) (retornaPreco add (read codigo)) (read qtd) ((read qtd) * (retornaPreco add (read codigo))))] ) add)
                             
                         _-> comprarCarro (lista++[(addLinhaFactura (read codigo) (retornaPreco add (read codigo)) (read qtd) ((read qtd) * (retornaPreco add (read codigo))))]  ) 
                     
                    
                     else 
                         putStr ("Não existe")
+
+
+
+exibirFactura [] a=[]
+exibirFactura a []=[]
+exibirFactura ((c,preco,qtd,subtotal):xs) ((cod,nome,_,_,_,_):ys) = if ((show c)==(show cod)) then "COD: "++(show cod)++"---NOME: "++nome++"---QTD: "++(show qtd)++"---PRECO: "++(show preco)++"--"++(show qtd)++"X"++(show preco)++": "++(show subtotal)++"\n"++exibirFactura xs add
+else
+    exibirFactura ((c,preco,qtd,subtotal):xs) ys 

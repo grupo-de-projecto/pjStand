@@ -26,7 +26,7 @@ rtn_ult (_,_,_,_,_,a) = a
 
 
 ler = do
-        a <- openFile "dados.txt" ReadMode
+        a <- openFile "dados.txt"  ReadMode
         conteudo <- hGetContents a
         return conteudo
         hClose a

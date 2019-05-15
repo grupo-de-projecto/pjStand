@@ -14,21 +14,21 @@ escrever = do
             putStrLn "Dados escrito"-}
 
 
-rtn_pri (a,_,_,_,_,_) = a
-rtn_sgn (_,a,_,_,_,_) = a
-rtn_ter (_,_,a,_,_,_) = a
-rtn_qrt (_,_,_,a,_,_) = a
-rtn_qnt (_,_,_,_,a,_) = a
-rtn_ult (_,_,_,_,_,a) = a
+codigo (a,_,_,_,_,_) = a
+nome (_,a,_,_,_,_) = a
+preco (_,_,a,_,_,_) = a
+categoria (_,_,_,a,_,_) = a
+marca (_,_,_,_,a,_) = a
+tipo (_,_,_,_,_,a) = a
 
 
 
 listar :: Automoveis -> IO ()
 listar [] = putStr ""
 listar (x:xs) = do
-                putStrLn ("Codigo: "++(show (rtn_pri x))++"\tNome: "++(show (rtn_sgn x))++"\tPreço: "++(show (rtn_ter x))++"\tCategoria: "++(show (rtn_qrt x))++"\tModelo: "++(show (rtn_qnt x))++"\tTipo: "++(show (rtn_ult x)))
+                putStrLn ("Codigo: "++(show (codigo x))++"\tNome: "++(show (nome x))++"\tPreço: "++(show (preco x))++"\tCategoria: "++(show (categoria x))++"\tModelo: "++(show (marca x))++"\tTipo: "++(show (tipo x)))
+                putStrLn "_________________________________________________________________________________________________________"
                 listar xs
-                
                 
 tecla::IO()
 tecla = do

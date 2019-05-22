@@ -1,4 +1,5 @@
-import Estrutura 
+import Estrutura
+import Escrever
 import System.IO
 
 compra::IO()  
@@ -10,7 +11,7 @@ compra = do
                 nome <- getLine
                 putStrLn ("Informe o Nº de Telefone do Cliente:")
                 telefone <- readLn :: IO Int
-                comprarCarro []
+                comprarCarro [] nome telefone
                 putStr("")
                 else
                     putStr ("nao")
@@ -42,7 +43,7 @@ addFactura (x:xs) elemento = (x:xs)++[elemento]
 listaLinhas = []
 
 
-comprarCarro lista = do                 
+comprarCarro lista nome telefone = do                 
                 putStrLn("Selecine o Carro ou Mota que Deseja Comprar\nCarros:\n")
                 putStrLn(exibeCarros add Carro)
                 putStrLn("\n\nMota:")
@@ -65,18 +66,19 @@ comprarCarro lista = do
                             putStrLn("Digite O Valor Pago: ")
                             d<-getLine
                             verificarValorPago d total
-                            putStrLn("")
-                                    
+                            putStrLn("aqui\n")
+                            escrever 1 nome telefone listaTa total d ((read d)-total)        
                             where{ 
                                 listaTa = (lista++[(addLinhaFactura (read codigo) (retornaPreco add (read codigo)) (read qtd) ((read qtd) * (retornaPreco add (read codigo))))]);
                                 total = (calculoTotal listaTa);
                             }
                                 
-                        _-> comprarCarro (lista++[(addLinhaFactura (read codigo) (retornaPreco add (read codigo)) (read qtd) ((read qtd) * (retornaPreco add (read codigo))))]  ) 
+                        _-> comprarCarro (lista++[(addLinhaFactura (read codigo) (retornaPreco add (read codigo)) (read qtd) ((read qtd) * (retornaPreco add (read codigo))))]) nome telefone
                     
                    
                     else 
-                        putStr ("Não existe")
+                        comprarCarro lista nome telefone
+                        --putStr ("Não existe")
 
 
 

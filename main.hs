@@ -1,4 +1,18 @@
-module Principal where
+module Main where
+import Preco
+
+
+verPreco::IO()
+verPreco=do
+      putStr "\n------------------- Menu Preco ------------------\n"
+      putStr("1-Consultar preco\n2-Menu principal \n\nDigite:")
+      op<-readLn :: IO Int 
+      case op of 
+        1-> meuPreco
+        2-> main
+      putStr("Prima qualquer tecla seguido de Enter para voltar ")
+      c<-getLine
+      verPreco
 
 main::IO()
 main = do
@@ -13,7 +27,7 @@ main = do
             putStr "8- Sair\n *Selecione a Tarefa que deseja realizar: "
             op<-getLine
             case read(op) of
-              1-> putStrLn ("Ver Preçario "++op)
+              1-> verPreco
               2-> putStrLn ("Listar Produtos "++op)
               3-> putStrLn ("Efectuar compra "++op)
               4-> putStrLn ("Consultar Factura "++op)

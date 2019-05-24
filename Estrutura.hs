@@ -11,7 +11,7 @@ type Telefone = Int
 type Dia = Int
 type Mes = Int
 type Ano = Int
-type Quantidade = Int 
+type Quantidade = Int
 type PrecoUnitario = Double
 type Subtotal = Double
 type Total = Double
@@ -39,5 +39,7 @@ automovel2=(2,"ricardo neves",12.43,Ligeiro,Toyota,Carro)
 automovel3=(3,"Mingota",12.43,Ligeiro,Toyota,Carro)
 automovel4=(4,"Teste",12.43,Ligeiro,Toyota,Moto)
 
+add::Automoveis
 add = [automovel1,automovel2,automovel3,automovel4]
+
 

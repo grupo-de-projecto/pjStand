@@ -12,11 +12,11 @@ escrever cod nome telefone ((codigo,pu,qtd,subtotal):xs) total valorPago troco l
     arquivo2 <- openFile "factura_todas.txt" AppendMode
     
     
-    hPutStr arquivo ((show cod)++"|"++nome++"|"++(retornaNome listaAuto codigo)++"|"++(show pu)++"|"++(show qtd)++"|"++(show subtotal)++"|"++(show total)++"|"++(show valorPago)++"|"++(show troco)++"|"++show(retornaTipo listaAuto codigo)++"|"++show(retornaMarca listaAuto codigo)++"|"++show(retornaCategoria listaAuto codigo)++"|"++show telefone++"|"++(take 10 (show amd))++"\n")
+    hPutStr arquivo ((show cod)++","++nome++","++(retornaNome listaAuto codigo)++","++(show pu)++","++(show qtd)++","++(show subtotal)++","++(show total)++","++(show valorPago)++","++(show troco)++","++show(retornaTipo listaAuto codigo)++","++show(retornaMarca listaAuto codigo)++","++show(retornaCategoria listaAuto codigo)++","++show telefone++","++(take 10 (show amd))++";")
     
-    hPutStr arquivo1 ((show cod)++"|"++nome++"|"++(retornaNome listaAuto codigo)++"|"++(show pu)++"|"++(show qtd)++"|"++(show subtotal)++"|"++(show total)++"|"++(show valorPago)++"|"++(show troco)++"|"++show(retornaTipo listaAuto codigo)++"|"++show(retornaMarca listaAuto codigo)++"|"++show(retornaCategoria listaAuto codigo)++"|"++show telefone++"|"++(take 10 (show amd))++"\n")
+    hPutStr arquivo1 ((show cod)++","++nome++","++(retornaNome listaAuto codigo)++","++(show pu)++","++(show qtd)++","++(show subtotal)++","++(show total)++","++(show valorPago)++","++(show troco)++","++show(retornaTipo listaAuto codigo)++","++show(retornaMarca listaAuto codigo)++","++show(retornaCategoria listaAuto codigo)++","++show telefone++","++(take 10 (show amd))++";")
 
-    hPutStr arquivo2 ((show cod)++"|"++nome++"|"++(retornaNome listaAuto codigo)++"|"++(show pu)++"|"++(show qtd)++"|"++(show subtotal)++"|"++(show total)++"|"++(show valorPago)++"|"++(show troco)++"|"++show(retornaTipo listaAuto codigo)++"|"++show(retornaMarca listaAuto codigo)++"|"++show(retornaCategoria listaAuto codigo)++"|"++show telefone++"|"++(take 10 (show amd))++"\n")
+    hPutStr arquivo2 ((show cod)++","++nome++","++(retornaNome listaAuto codigo)++","++(show pu)++","++(show qtd)++","++(show subtotal)++","++(show total)++","++(show valorPago)++","++(show troco)++","++show(retornaTipo listaAuto codigo)++","++show(retornaMarca listaAuto codigo)++","++show(retornaCategoria listaAuto codigo)++","++show telefone++","++(take 10 (show amd))++";")
     
     
     

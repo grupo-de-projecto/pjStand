@@ -1,3 +1,4 @@
+module Compra where
 import Estrutura
 import Escrever
 import System.IO
@@ -32,6 +33,8 @@ exibeCarros ((cod,nome,preco,categoria,marca,tipo):xs) tipoComp= if(tipo == tipo
 
 retornaPreco ((c,_,preco,_,_,_):xs) cod | c == cod = preco
                                         | otherwise = retornaPreco xs cod
+                                        
+
 
 addLinhaFactura::Int->Double->Int->Double->(Int,Double,Int,Double)
 addLinhaFactura cod preco qtd subtotal = (cod,preco,qtd,subtotal)
@@ -67,7 +70,7 @@ comprarCarro lista nome telefone = do
                             d<-getLine
                             verificarValorPago d total
                             putStrLn("aqui\n")
-                            escrever 1 nome telefone listaTa total d ((read d)-total)        
+                            escrever 1 nome telefone listaTa total d ((read d)-total) add        
                             where{ 
                                 listaTa = (lista++[(addLinhaFactura (read codigo) (retornaPreco add (read codigo)) (read qtd) ((read qtd) * (retornaPreco add (read codigo))))]);
                                 total = (calculoTotal listaTa);

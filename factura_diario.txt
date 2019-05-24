@@ -1,4 +1,2 @@
-1|ricardo neves|ricardo|12.43|2|24.86|261.03|"300"|38.97000000000003|"Carro"|"Toyota"|"Ligeiro"|2019-05-24
-2|ricardo neves|ricardo neves|12.43|19|236.17|261.03|"300"|38.97000000000003|"Carro"|"Toyota"|"Ligeiro"|2019-05-24
 1|joao alberto|ricardo neves|12.43|9|111.87|223.74|"300"|76.25999999999999|"Carro"|"Toyota"|"Ligeiro"|912912291|2019-05-24
 2|joao alberto|Teste|12.43|9|111.87|223.74|"300"|76.25999999999999|"Moto"|"Toyota"|"Ligeiro"|912912291|2019-05-24

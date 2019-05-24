@@ -33,6 +33,9 @@ type Factura = (Codigo, LinhasFacturas, Total, ValorPago, Troco, Data)
 
 type Facturas = [Factura]
 
+type FacturaFich=(Codigo,Nome,Nome,PrecoUnitario,Quantidade,Sub_Total,Total,ValorPago,Troco,Tipo,Marca,Categoria,Telefone,String)
+type FacturasFich=[FacturaFich]
+
 
 automovel1=(1,"ricardo",12.43,Ligeiro,Jaguar,Carro)
 automovel2=(2,"ricardo neves",12.43,Ligeiro,Toyota,Carro)
@@ -40,4 +43,8 @@ automovel3=(3,"Mingota",12.43,Ligeiro,Bmw,Carro)
 automovel4=(4,"Teste",12.43,Ligeiro,Honda,Moto)
 
 add = [automovel1,automovel2,automovel3,automovel4]
+
+
+
+
 

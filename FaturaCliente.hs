@@ -1,14 +1,16 @@
 module FactureCliente where
 import Estrutura
 
+
+listaPri=linhasDeFactura
 --linhasDeFactura::IO()
 linhasDeFactura= do
         fF<-readFile "factura_cliente.txt"
         let l=map words (lines (transf fF))
-            listA=linhasFactura l
+            listaP=linhasFactura l
         
-        return listA
-        putStr("")
+        return listaP
+        --putStr("")
 
 
 --listLinhasFacturas::LinhaFacturas->String

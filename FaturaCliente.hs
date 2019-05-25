@@ -2,7 +2,7 @@ module FactureCliente where
 import Estrutura
 
 
-listaPri=linhasDeFactura
+listaDeLinhasDeFactura=linhasDeFactura
 --linhasDeFactura::IO()
 linhasDeFactura= do
         fF<-readFile "factura_cliente.txt"
@@ -14,8 +14,8 @@ linhasDeFactura= do
 
 
 --listLinhasFacturas::LinhaFacturas->String
-listLinhasFacturas []=[]
-listLinhasFacturas ((cod,pu,qtd,sub):xs)="Codigo: "++show(cod)++"| PrecoU"++show(pu)++"| qtd: "++show(qtd)++"| SubTotal: "++show(sub)++"\n"++listLinhasFacturas xs
+--listLinhasFacturas []=[]
+--listLinhasFacturas ((cod,pu,qtd,sub):xs)="Codigo: "++show(cod)++"| PrecoU"++show(pu)++"| qtd: "++show(qtd)++"| SubTotal: "++show(sub)++"\n"++listLinhasFacturas xs
 
 
 transf::String->String
@@ -26,7 +26,7 @@ transf (x:xs)|(x==',')||(x=='-')=['\t']++transf xs
              |(x== '"')=[' ']++transf xs
              |otherwise =[x]++transf xs
 
-teste ([cod,_,_,pu,qtd,sub,_,_,_,_,_,_,_,_]:xs) = show cod
+
 
 --linhasFactura::[[String]]->LinhasFactura
 linhasFactura ([cod,_,_,pu,qtd,sub,_,_,_,_,_,_,_,_,_,_]:xs)=let cod1=(read cod)::Codigo
@@ -39,4 +39,16 @@ linhasFactura ([cod,_,_,pu,qtd,sub,_,_,_,_,_,_,_,_,_,_]:xs)=let cod1=(read cod):
 linhasFactura _=[]
 
 
+factura= do
+        fF<-readFile "factura_cliente.txt"
+        let l=map words (lines (transf fF))
+            listaP=facturaDados l
+        
+        return listaP
 
+facturaDados ([cod,_,_,_,_,_,total,valorPago,troco,_,_,_,_,dia,mes,ano]:xs)=let cod1=(read cod)::Codigo
+                                                                                t=(read total)::Total
+                                                                                vP=(read valorPago)::ValorPago
+                                                                                tr=(read troco)::Troco
+                                                                                date=ano++"-"++mes++"-"++dia
+                                                            in (cod1,t,vP,tr,date):(facturaDados xs)

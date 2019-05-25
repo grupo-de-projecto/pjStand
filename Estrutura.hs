@@ -22,7 +22,7 @@ type Troco = Double
 type Automovel = (Codigo, Nome, Preco, Categoria, Marca, Tipo)
 type Automoveis=[Automovel]
 type Cliente = (Nome, Telefone)
-type Data = (Dia, Mes, Ano)
+type Data = String
 
 
 type LinhaFactura = (Codigo, PrecoUnitario, Quantidade, Subtotal)

@@ -5,24 +5,24 @@ data Marca = Volvo | Toyota | Jaguar | Bmw | Honda deriving(Show,Eq,Read)
 data Categoria = Ligeiro | Pesado deriving(Show,Eq,Read)
 
 type Codigo = Int
-type CodigoAutomovel = Int
 type Nome = String
 type Preco = Double
 type Telefone = Int
 type Dia = Int
 type Mes = Int
 type Ano = Int
-type Quantidade = Int 
+type Quantidade = Int
 type PrecoUnitario = Double
 type Subtotal = Double
 type Total = Double
 type ValorPago = Double
 type Troco = Double
 
+
 type Automovel = (Codigo, Nome, Preco, Categoria, Marca, Tipo)
 type Automoveis=[Automovel]
 type Cliente = (Nome, Telefone)
-type Data = String
+type Data = (Dia, Mes, Ano)
 
 
 type LinhaFactura = (Codigo, PrecoUnitario, Quantidade, Subtotal)
@@ -33,7 +33,7 @@ type Factura = (Codigo, LinhasFacturas, Total, ValorPago, Troco, Data)
 
 type Facturas = [Factura]
 
-type FacturaFich=(Codigo,Nome,Nome,PrecoUnitario,Quantidade,Sub_Total,Total,ValorPago,Troco,Tipo,Marca,Categoria,Telefone,String)
+type FacturaFich=(Codigo,Nome,Nome,PrecoUnitario,Quantidade,Subtotal,Total,ValorPago,Troco,Tipo,Marca,Categoria,Telefone,String)
 type FacturasFich=[FacturaFich]
 
 
@@ -44,8 +44,3 @@ automovel4=(4,"Teste",12.43,Ligeiro,Honda,Moto)
 
 add::Automoveis
 add = [automovel1,automovel2,automovel3,automovel4]
-
-
-
-
-

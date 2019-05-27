@@ -1,1 +1,0 @@
-(1,"Celestino",10.0,Ligeiro,Toyota,Carro);(1,"Langa",10.0,Ligeiro,Toyota,Carro)

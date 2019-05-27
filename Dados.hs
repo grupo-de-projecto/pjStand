@@ -1,7 +1,5 @@
 module Dados  where
-
 import Estrutura
-import System.IO
 
 
 codigo::Automovel->Codigo
@@ -25,7 +23,7 @@ tipo (_,_,_,_,_,a) = a
 
 
 dados :: Automoveis -> IO ()
-dados [] = tecla
+dados [] = putStr ""
 dados (x:xs) = do
                 putStrLn ("    Codigo: "++(show (codigo x))++"\tNome: "++(show (nome x))++"\tPreço: "++(show (preco x))++"\tCategoria: "++(show (categoria x))++"\tModelo: "++(show (marca x))++"\tTipo: "++(show (tipo x)))
                 putStrLn "---------------------------------------------------------------------------------------------------------------"
@@ -34,9 +32,3 @@ dados (x:xs) = do
 listar = do
           putStrLn "\n--------------------------------------------------- PRODUTOS --------------------------------------------------"
           dados add
-
-tecla::IO()
-tecla = do
-        putStrLn "\nDIGITE QUALQUER DIGITO, EM SEGUIDA A TECLAR {ENTER}"
-        a <- getLine
-        putStrLn a

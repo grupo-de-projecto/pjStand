@@ -1,5 +1,6 @@
 module Mais_Vendido where
 
+import Estrutura
 
 linha1=(2,3000.456,5,3000.456)
 linha2=(3,5000.456,1,5000.456)
@@ -62,24 +63,15 @@ impr []=[]
 impr ((d,h,f,u):[])=[]
 impr ((d,h,f,u):(g,m,c,r):xs) |(d==g)   = (d,h,f+c,u):impr ((d,h,f+c,u):xs)
                               |(d/=g)  =impr ((d,h,f,u):xs)++impr ((g,m,c,r):xs)
-                          
-                
-repetidos::[LinhaFactura]->[LinhaFactura]    ---verifica os repetidos na lista anterior
-repetidos []=[]
-repetidos (xs:[])=[xs]
-repetidos ((d,h,f,u):(g,m,c,r):ys)|(d,h,f,u)==(g,m,c,r) =(d,h,f,u):repetidos ((g,m,c,r):ys)
-                                  |otherwise=(g,m,c,r):repetidos (ys)
 
-                          
-                          
 
-                          
+
 maior::[LinhaFactura]->[LinhaFactura]   --procura o maior da lista
 maior []=[]
 maior (rs:[])=[rs]
 maior ((d,h,f,u):(g,m,c,r):rs) |f>=c=maior ((d,h,f,u):rs)
                                |otherwise=maior ((g,m,c,r):rs)
-                           
+
 lista:: [(b)]->(b)      ---tira um elemento da lista, o elemento deve ser uma tupla
 lista [(a)]=(a)
 
@@ -87,16 +79,15 @@ lista [(a)]=(a)
 trata::[LinhaFactura]->(Codigo, PrecoUnitario, Quantidade, Subtotal)  ---retorna uma tupla, retira o elemento da lista
 trata o= lista o
 
-varredura::(Codigo, PrecoUnitario, Quantidade, Subtotal)->[LinhaFactura]->[LinhaFactura]   ---faz uma 
---varredura se existe alguem maior do que ele
+varredura::(Codigo, PrecoUnitario, Quantidade, Subtotal)->[LinhaFactura]->[LinhaFactura]   ---faz uma varredura se existe alguem maior do que ele
 varredura  j []=[j]
-varredura  j (i:is)            |filtro j i==[j]=varredura j is 
+varredura  j (i:is)            |filtro j i==[j]=varredura j is
                                |otherwise=varredura i is
-                    
+
 
 filtro::(Codigo, PrecoUnitario, Quantidade, Subtotal)->(Codigo, PrecoUnitario, Quantidade, Subtotal)->[(Codigo, PrecoUnitario, Quantidade, Subtotal)]   --Faz o filtro de comparação
 filtro (z,b,c,d) (e,f,g,h)|c>=g     = [(z,b,c,d)]
                           |otherwise= [(e,f,g,h)]
 
-chama::(String->[LinhaFactura])    --faz  a chamada de todas as funçoes
-chama =varredura (trata (maior (impr bwedeLinhas))) bwedeLinhas 
+chama::[LinhaFactura]    --faz  a chamada de todas as funçoes
+chama =varredura (trata (maior (impr bwedeLinhas))) bwedeLinhas

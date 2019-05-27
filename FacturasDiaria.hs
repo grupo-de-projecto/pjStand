@@ -1,4 +1,4 @@
-module FacturasDiaria where
+module Facturas where
 import Estrutura
 
 dia::Data->IO()

@@ -69,7 +69,7 @@ comprarCarro lista nome telefone = do
                             putStrLn("Digite O Valor Pago: ")
                             d<-getLine
                             verificarValorPago d total
-                            putStrLn("aqui\n")
+                            putStrLn("\n")
                             escrever 1 nome telefone listaTa total d ((read d)-total) add        
                             where{ 
                                 listaTa = (lista++[(addLinhaFactura (read codigo) (retornaPreco add (read codigo)) (read qtd) ((read qtd) * (retornaPreco add (read codigo))))]);
@@ -101,5 +101,9 @@ verificarValorPago valor total = do if ((read valor)<total) then do
                                         verificarValorPago d total
                                         else
                                             putStr("TROCO: "++show((read valor)-total))
+                                            
+                                            
+
+ 
                                   
                                             

@@ -2,6 +2,7 @@ module FactureCliente where
 import System.IO
 import Estrutura
 
+
 transf::String->String
 transf []=[]
 transf (x:xs)|(x==',')||(x=='-')=['\t']++transf xs
@@ -17,23 +18,22 @@ busca codFactur= do
         let dados = map words (lines (transf fF))
             lista = linhasFactura dados codFactur
             factura = (facturaDados dados codFactur)
-        putStr(listLinhasFacturas lista)
+        putStr(listLinhasFacturas lista add)
         putStr(listFacturas factura)
         
-listLinhasFacturas::[(Codigo,Nome, PrecoUnitario, Quantidade, Subtotal)]->String
-listLinhasFacturas []=[]
-listLinhasFacturas ((cod,nome,pu,qtd,sub):xs)="Codigo Produto: "++show(cod)++"| Nome:"++show(nome)++"| PrecoU:"++show(pu)++"| Quantidade: "++show(qtd)++"| SubTotal: "++show(sub)++"\n"++listLinhasFacturas xs
+listLinhasFacturas::[(Codigo, PrecoUnitario, Quantidade, Subtotal)]->Automoveis->String
+listLinhasFacturas [] _=[]
+listLinhasFacturas ((cod,pu,qtd,sub):xs) l="Codigo Produto: "++show(cod)++"|"++(buscaNome l cod)++"| PrecoU:"++show(pu)++"| Quantidade: "++show(qtd)++"| SubTotal: "++show(sub)++"\n"++listLinhasFacturas xs l
 
 
 
-linhasFactura::[[String]]->Int->[(Codigo,Nome, PrecoUnitario, Quantidade, Subtotal)]
+linhasFactura::[[String]]->Int->[(Codigo, PrecoUnitario, Quantidade, Subtotal)]
 linhasFactura ([cod,nome,codigoAuto,_,pu,qtd,sub,_,_,_,_,_,_,_,_,_,_]:xs) codigo|(cod == (show codigo))=let cod1=(read codigoAuto)::Codigo
                                                                                                             pu2=(read pu)::PrecoUnitario
                                                                                                             qtd1=(read qtd)::Quantidade
                                                                                                             sub1=(read sub)::Subtotal
-                                                                                                            nome1=nome
 
-                                                                                                in (cod1,nome1,pu2,qtd1,sub1):(linhasFactura xs codigo)
+                                                                                                in (cod1,pu2,qtd1,sub1):(linhasFactura xs codigo)
                                                                              |otherwise=linhasFactura xs codigo
 linhasFactura [] codigo=[]
             
@@ -53,3 +53,8 @@ facturaDados _ codigo=[]
 
 
 listFacturas ((cod,total,valorPago,troco,date):xs)="Codigo: "++show(cod)++"| Total"++show(total)++"| ValorPago: "++show(valorPago)++"| Troco: "++show(troco)++"|Data: "++date ++"\n"
+
+
+
+buscaNome ((codigo, nome, preco, categoria, marca, tipo):xs) codi |((show codigo)==(show codi)) = "Nome: "++nome++"Marca: "++(show marca)
+                                                                  |otherwise = buscaNome xs codi

@@ -1,4 +1,4 @@
-module DadosFacturaTxt where
+module CarregarFicheiro where
 import System.IO
 import Estrutura --hiding(Categoria)
 import Dados

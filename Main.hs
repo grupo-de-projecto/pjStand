@@ -2,7 +2,8 @@ module Main where
 
 import Preco
 import Dados
-import Mais_Vendido
+import Compra
+import CarregarFicheiro
 
 
 --menu adjuto para chamar a função meuPreco do modulo Preco
@@ -27,9 +28,10 @@ listar_dados = do
                 main
 
 --menu função adjunta para chamar a função que verifca o automovel mais vendido
-maisVendido::IO()
-maisVendido = do
+carroMaisVendido::IO()
+carroMaisVendido = do
                 putStrLn "O Automovel mais vendido é: "
+                chamar
 
 main::IO()
 main = do
@@ -50,4 +52,4 @@ main = do
               4-> putStrLn ("Consultar Factura "++op)
               5-> putStrLn ("Ver Factura do diário "++op)
               6-> putStrLn ("Ver todas Facturas "++op)
-              7-> maisVendido
+              7-> carroMaisVendido

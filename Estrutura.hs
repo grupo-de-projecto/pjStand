@@ -5,6 +5,7 @@ data Marca = Volvo | Toyota | Jaguar | Bmw | Honda deriving(Show,Eq,Read)
 data Categoria = Ligeiro | Pesado deriving(Show,Eq,Read)
 
 type Codigo = Int
+type CodigoAutomovel = Int
 type Nome = String
 type Preco = Double
 type Telefone = Int
@@ -17,7 +18,6 @@ type Subtotal = Double
 type Total = Double
 type ValorPago = Double
 type Troco = Double
-
 
 type Automovel = (Codigo, Nome, Preco, Categoria, Marca, Tipo)
 type Automoveis=[Automovel]
@@ -42,6 +42,7 @@ automovel2=(2,"ricardo neves",12.43,Ligeiro,Toyota,Carro)
 automovel3=(3,"Mingota",12.43,Ligeiro,Bmw,Carro)
 automovel4=(4,"Teste",12.43,Ligeiro,Honda,Moto)
 
+add::Automoveis
 add = [automovel1,automovel2,automovel3,automovel4]
 
 

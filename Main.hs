@@ -23,15 +23,25 @@ verPreco=do
 listar_dados::IO()
 listar_dados = do
                 listar
-                putStrLn "\nDIGITE QUALQUER DIGITO, EM SEGUIDA A TECLAR {ENTER}"
+                putStrLn "\nDIGITE {ENTER} PARA CONTINUAR"
                 a <- getLine
                 main
+
+--menu adjunto para chamar a função compra do modulo Compra
+comprar::IO()
+comprar = do
+            compra
+            putStrLn "\n COMPRA EFECTUADO COM SUCESSO!\n\n\n"
+            main
+
 
 --menu função adjunta para chamar a função que verifca o automovel mais vendido
 carroMaisVendido::IO()
 carroMaisVendido = do
-                putStrLn "O Automovel mais vendido é: "
+                putStr "AUTOMOVEL MAIS VENDIDO\n------------------------------------------\n"
+                putStr "O Automovel mais vendido é: "
                 chamar
+                main
 
 main::IO()
 main = do
@@ -48,7 +58,7 @@ main = do
             case read(op) of
               1-> verPreco
               2-> listar_dados
-              3-> putStrLn ("Efectuar compra "++op)
+              3-> comprar
               4-> putStrLn ("Consultar Factura "++op)
               5-> putStrLn ("Ver Factura do diário "++op)
               6-> putStrLn ("Ver todas Facturas "++op)

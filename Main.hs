@@ -1,18 +1,35 @@
 module Main where
+
 import Preco
+import Dados
+import Mais_Vendido
 
 
+--menu adjuto para chamar a função meuPreco do modulo Preco
 verPreco::IO()
 verPreco=do
       putStr "\n------------------- Menu Preco ------------------\n"
       putStr("1-Consultar preco\n2-Menu principal \n\nDigite:")
-      op<-readLn :: IO Int 
-      case op of 
+      op<-readLn :: IO Int
+      case op of
         1-> meuPreco
         2-> main
       putStr("Prima qualquer tecla seguido de Enter para voltar ")
       c<-getLine
       verPreco
+
+--menu adjuto para chamar a função listar do modulo Dados
+listar_dados::IO()
+listar_dados = do
+                listar
+                putStrLn "\nDIGITE QUALQUER DIGITO, EM SEGUIDA A TECLAR {ENTER}"
+                a <- getLine
+                main
+
+--menu função adjunta para chamar a função que verifca o automovel mais vendido
+maisVendido::IO()
+maisVendido = do
+                putStrLn "O Automovel mais vendido é: "
 
 main::IO()
 main = do
@@ -28,9 +45,9 @@ main = do
             op<-getLine
             case read(op) of
               1-> verPreco
-              2-> putStrLn ("Listar Produtos "++op)
+              2-> listar_dados
               3-> putStrLn ("Efectuar compra "++op)
               4-> putStrLn ("Consultar Factura "++op)
               5-> putStrLn ("Ver Factura do diário "++op)
               6-> putStrLn ("Ver todas Facturas "++op)
-              7-> putStrLn ("Mostrar as informações do automóvel mais vendido "++op)
+              7-> maisVendido

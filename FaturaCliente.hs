@@ -15,7 +15,7 @@ busca codFactur= do
         fF<-readFile "factura_clientes.txt"
         let dados = map words (lines (transf fF))
             lista = linhasFactura dados codFactur
-            factura = (facturaDados dados codFactur)
+            factura = facturaDados dados codFactur
         putStr(listLinhasFacturas lista add)
         putStr(listFacturas factura)
         
@@ -45,7 +45,8 @@ facturaDados ([cod,_,_,_,_,_,_,total,valorPago,troco,_,_,_,_,dia,mes,ano]:xs) co
                                                                                                                 tr=(read troco)::Troco
                                                                                                                 date=ano++"-"++mes++"-"++dia
                                                                                                 in (cod1,t,vP,tr,date):(facturaDados xs codigo)
-facturaDados _ codigo=[]
+                                                                                     |otherwise=facturaDados xs codigo
+facturaDados [] codigo=[]
 
 
 

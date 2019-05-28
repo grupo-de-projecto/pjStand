@@ -5,7 +5,7 @@ import CarregarFicheiro
 
 
 impr::[LinhaFactura]->[LinhaFactura]            ---Retorna a lista de todos os carros vendidos em mais de uma factura
-impr []=[]
+impr []=[(d,h,f,u)]
 impr ((d,h,f,u):[])=[]
 impr ((d,h,f,u):(g,m,c,r):xs) |(d==g)   = (d,h,f+c,u):impr ((d,h,f+c,u):xs)
                               |(d/=g)  =impr ((d,h,f,u):xs)++impr ((g,m,c,r):xs)

@@ -5,6 +5,7 @@ import Dados
 import Compra
 import Mais_Vendido
 import Facturas
+import FaturaCliente
 
 
 --menu adjuto para chamar a função meuPreco do modulo Preco
@@ -64,6 +65,20 @@ carroMaisVendido = do
                 chamar
                 main
 
+
+
+buscaCarroCod::IO()
+buscaCarroCod = do
+                putStr "___________________________________________________________________\n"
+                putStr "Digite o Codigo da Factura: "
+                a<-getLine
+                buscaCodigo (read a)
+                putStrLn "Digite ENTER para Sair"
+                b<-getLine
+                main
+
+
+
 main::IO()
 main = do
             putStr "-------------- Menu ------------------\n"
@@ -80,7 +95,7 @@ main = do
               1-> verPreco
               2-> listar_dados
               3-> efectuarCompra
-              4-> putStrLn ("Consultar Factura "++op)
+              4-> buscaCarroCod
               5-> listar_facturas_Data
               6-> listar_facturas
               7-> carroMaisVendido

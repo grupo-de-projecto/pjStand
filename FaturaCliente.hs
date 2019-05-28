@@ -11,7 +11,7 @@ transf (x:xs)|(x==',')||(x=='-')=['\t']++transf xs
              |(x== '"')=[' ']++transf xs
              |otherwise =[x]++transf xs
              
-busca codFactur= do
+buscaCodigo codFactur= do
         fF<-readFile "factura_clientes.txt"
         let dados = map words (lines (transf fF))
             lista = linhasFactura dados codFactur

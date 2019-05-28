@@ -58,3 +58,7 @@ listFacturas ((cod,total,valorPago,troco,date):xs)="Codigo: "++show(cod)++"| Tot
 
 buscaNome ((codigo, nome, preco, categoria, marca, tipo):xs) codi |((show codigo)==(show codi)) = "Nome: "++nome++"Marca: "++(show marca)
                                                                   |otherwise = buscaNome xs codi
+                                                                  
+                                                                  
+
+ultimocod =

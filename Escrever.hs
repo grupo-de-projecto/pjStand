@@ -7,7 +7,7 @@ escrever cod nome telefone ((codigo,pu,qtd,subtotal):xs) total valorPago troco l
     amd <- (getCurrentTime)
     
 
-    arquivo <- openFile "factura_cliente.txt" AppendMode
+    arquivo <- openFile "factura_clientes.txt" AppendMode
     arquivo1 <- openFile "factura_diario.txt" AppendMode
     arquivo2 <- openFile "factura_todas.txt" AppendMode
     
@@ -30,7 +30,7 @@ escrever cod nome telefone ((codigo,pu,qtd,subtotal):xs) total valorPago troco l
     hClose arquivo2
     
     putStr ("")
-    escrever (cod+1) nome telefone xs total valorPago troco listaAuto
+    escrever cod nome telefone xs total valorPago troco listaAuto
 
 retornaNome ((c,nome,_,_,_,_):xs) cod | (show c) == (show cod) = nome
                                       | otherwise = retornaNome xs cod

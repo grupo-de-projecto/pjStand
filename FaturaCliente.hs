@@ -1,20 +1,6 @@
-module FactureCliente where
+module FaturaCliente where
 import System.IO
 import Estrutura
-
-
-listaDeLinhasDeFactura=linhasDeFactura
-
-linhasDeFactura= do
-        fF<-readFile "factura_cliente.txt"
-        let l=map words (lines (transf fF))
-            listaP=linhasFactura l    
-        return listaP
-
-
---listLinhasFacturas::LinhaFacturas->String
-listLinhasFacturas []=[]
-listLinhasFacturas ((cod,pu,qtd,sub):xs)="Codigo: "++show(cod)++"| PrecoU"++show(pu)++"| qtd: "++show(qtd)++"| SubTotal: "++show(sub)++"\n"++listLinhasFacturas xs
 
 
 transf::String->String
@@ -24,37 +10,51 @@ transf (x:xs)|(x==',')||(x=='-')=['\t']++transf xs
              |(x==' ')=['_']++transf xs
              |(x== '"')=[' ']++transf xs
              |otherwise =[x]++transf xs
-
-
-
-linhasFactura::[[String]]->LinhasFacturas
-linhasFactura ([cod,_,_,pu,qtd,sub,_,_,_,_,_,_,_,_,_,_]:xs)=let cod1=(read cod)::Codigo
-                                                                pu2=(read pu)::PrecoUnitario
-                                                                qtd1=(read qtd)::Quantidade
-                                                                sub1=(read sub)::Subtotal
-
-                                  
-                    in (cod1,pu2,qtd1,sub1):(linhasFactura xs)
-linhasFactura _=[]
-
-
-factura= do
-        fF<-readFile "factura_cliente.txt"
-        let l=map words (lines (transf fF))
-            listaP=facturaDados l
+             
+busca codFactur= do
+        fF<-readFile "factura_clientes.txt"
+        let dados = map words (lines (transf fF))
+            lista = linhasFactura dados codFactur
+            factura = (facturaDados dados codFactur)
+        putStr(listLinhasFacturas lista add)
+        putStr(listFacturas factura)
         
-        return listaP
+listLinhasFacturas::[(Codigo, PrecoUnitario, Quantidade, Subtotal)]->Automoveis->String
+listLinhasFacturas [] _=[]
+listLinhasFacturas ((cod,pu,qtd,sub):xs) l="Codigo Produto: "++show(cod)++"|"++(buscaNome l cod)++"| PrecoU:"++show(pu)++"| Quantidade: "++show(qtd)++"| SubTotal: "++show(sub)++"\n"++listLinhasFacturas xs l
 
 
-facturaDados ([cod,_,_,_,_,_,total,valorPago,troco,_,_,_,_,dia,mes,ano]:xs)=let cod1=(read cod)::Codigo
-                                                                                t=(read total)::Total
-                                                                                vP=(read valorPago)::ValorPago
-                                                                                tr=(read troco)::Troco
-                                                                                date=ano++"-"++mes++"-"++dia
-                                                            in (cod1,t,vP,tr,date):(facturaDados xs)
-facturaDados _=[]
 
---busca::Int->LinhasFacturas->String
---busca cod ((cod1,pu,qtd,sub):xs)=show(cod1) ++ "Passei"
+linhasFactura::[[String]]->Int->[(Codigo, PrecoUnitario, Quantidade, Subtotal)]
+linhasFactura ([cod,nome,codigoAuto,_,pu,qtd,sub,_,_,_,_,_,_,_,_,_,_]:xs) codigo|(cod == (show codigo))=let cod1=(read codigoAuto)::Codigo
+                                                                                                            pu2=(read pu)::PrecoUnitario
+                                                                                                            qtd1=(read qtd)::Quantidade
+                                                                                                            sub1=(read sub)::Subtotal
 
---imprime = listLinhasFacturas listaDeLinhasDeFactura
+                                                                                                in (cod1,pu2,qtd1,sub1):(linhasFactura xs codigo)
+                                                                             |otherwise=linhasFactura xs codigo
+linhasFactura [] codigo=[]
+            
+        
+
+
+
+facturaDados ([cod,_,_,_,_,_,_,total,valorPago,troco,_,_,_,_,dia,mes,ano]:xs) codigo|(cod == (show codigo))=let cod1=(read cod)::Codigo
+                                                                                                                t=(read total)::Total
+                                                                                                                vP=(read valorPago)::ValorPago
+                                                                                                                tr=(read troco)::Troco
+                                                                                                                date=ano++"-"++mes++"-"++dia
+                                                                                                in (cod1,t,vP,tr,date):(facturaDados xs codigo)
+facturaDados _ codigo=[]
+
+
+
+
+listFacturas ((cod,total,valorPago,troco,date):xs)="Codigo: "++show(cod)++"| Total"++show(total)++"| ValorPago: "++show(valorPago)++"| Troco: "++show(troco)++"|Data: "++date ++"\n"
+
+
+
+buscaNome ((codigo, nome, preco, categoria, marca, tipo):xs) codi |((show codigo)==(show codi)) = "Nome: "++nome++"Marca: "++(show marca)
+                                                                  |otherwise = buscaNome xs codi
+                                                                  
+                   

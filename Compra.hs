@@ -1,10 +1,11 @@
 module Compra where
 import Estrutura
 import Escrever
+
 import System.IO
 
-compra::IO()  
-compra = do
+comprar::Int->IO()  
+comprar codFactura = do
             putStr("Selecione o Vendedor:\n1-Paulino\n2-Jonas")
             v<-readLn :: IO Int
             if (v == 1 || v == 2) then do
@@ -12,7 +13,7 @@ compra = do
                 nome <- getLine
                 putStrLn ("Informe o Nº de Telefone do Cliente:")
                 telefone <- readLn :: IO Int
-                comprarCarro [] nome telefone
+                comprarCarro [] nome telefone codFactura
                 putStr("")
                 else
                     putStr ("nao")
@@ -46,7 +47,7 @@ addFactura (x:xs) elemento = (x:xs)++[elemento]
 listaLinhas = []
 
 
-comprarCarro lista nome telefone = do                 
+comprarCarro lista nome telefone codFactura = do                 
                 putStrLn("Selecine o Carro ou Mota que Deseja Comprar\nCarros:\n")
                 putStrLn(exibeCarros add Carro)
                 putStrLn("\n\nMota:")
@@ -70,17 +71,17 @@ comprarCarro lista nome telefone = do
                             d<-getLine
                             verificarValorPago d total
                             putStrLn("\n")
-                            escrever 1 nome telefone listaTa total d ((read d)-total) add        
+                            escrever (codFactura+1) nome telefone listaTa total d ((read d)-total) add        
                             where{ 
                                 listaTa = (lista++[(addLinhaFactura (read codigo) (retornaPreco add (read codigo)) (read qtd) ((read qtd) * (retornaPreco add (read codigo))))]);
                                 total = (calculoTotal listaTa);
                             }
                                 
-                        _-> comprarCarro (lista++[(addLinhaFactura (read codigo) (retornaPreco add (read codigo)) (read qtd) ((read qtd) * (retornaPreco add (read codigo))))]) nome telefone
+                        _-> comprarCarro (lista++[(addLinhaFactura (read codigo) (retornaPreco add (read codigo)) (read qtd) ((read qtd) * (retornaPreco add (read codigo))))]) nome telefone codFactura
                     
                    
                     else 
-                        comprarCarro lista nome telefone
+                        comprarCarro lista nome telefone codFactura
                         --putStr ("Não existe")
 
 
@@ -104,6 +105,56 @@ verificarValorPago valor total = do if ((read valor)<total) then do
                                             
                                             
 
- 
-                                  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+compra= do
+        fF<-readFile "factura_todas.txt"
+        
+        let l=map words (lines (transfo fF))
+            listaP=linhasCod l
+        putStr fF
+        
+        comprar (buscaUltimoCod listaP)
+        
+        putStr ("")
+
+
+
+linhasCod::[[String]]->[Int]
+linhasCod ([cod,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_]:xs)=let cod1=(read cod)::Codigo
+                                                     in (cod1):(linhasCod xs)
+linhasCod _=[]
+
+buscaUltimoCod [] = 0
+buscaUltimoCod (x:xs) |(xs == []) = x
+                      |otherwise = buscaUltimoCod xs
+
+transfo::String->String
+transfo []=[]
+transfo (x:xs)|(x==',')||(x=='-')=['\t']++transfo xs
+             |(x=='|')=['\n']++transfo xs
+             |(x==' ')=['_']++transfo xs
+             |(x== '"')=[' ']++transfo xs
+             |otherwise =[x]++transfo xs
+
                                             

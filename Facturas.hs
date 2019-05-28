@@ -1,6 +1,13 @@
 module Facturas where
 import Estrutura
 
+transf::String->String
+transf []=[]
+transf (x:xs)|(x==',')||(x=='-')=['\t']++transf xs
+             |(x=='|')=['\n']++transf xs
+             |(x==' ')=['_']++transf xs
+             |(x== '"')=[' ']++transf xs
+             |otherwise =[x]++transf xs
 
 buscar= busca 1
 

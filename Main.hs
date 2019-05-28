@@ -58,7 +58,7 @@ main = do
             case read(op) of
               1-> verPreco
               2-> listar_dados
-              3-> comprar
+              3-> compra
               4-> putStrLn ("Consultar Factura "++op)
               5-> putStrLn ("Ver Factura do diário "++op)
               6-> putStrLn ("Ver todas Facturas "++op)

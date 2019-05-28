@@ -132,7 +132,7 @@ compra= do
         
         let l=map words (lines (transfo fF))
             listaP=linhasCod l
-        putStr fF
+        putStr (drop (length fF) fF)
         
         comprar (buscaUltimoCod listaP)
         

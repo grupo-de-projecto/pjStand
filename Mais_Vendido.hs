@@ -1,5 +1,6 @@
 module Mais_Vendido where
 import Estrutura
+import CarregarFicheiro
 
 
 
@@ -36,3 +37,20 @@ filtro (z,b,c,d) (e,f,g,h)|c>=g     = [(z,b,c,d)]
 
 --chama::[LinhaFactura]    --faz  a chamada de todas as funçoes
 --chama = varredura (trata (maior (impr bwedeLinhas))) bwedeLinhas
+maisVendido::[[String]]->LinhasFacturas
+maisVendido ([_,_,cp,_,p,k,s,_,_,_,_,_,_,_,_]:xs)=let     cp2=(read cp)::Codigo
+                                                          p2=(read p)::PrecoUnitario
+                                                          k2=(read k)::Quantidade
+                                                          s2=(read s)::Subtotal
+
+
+                    in (cp2,p2,k2,s2):(maisVendido xs)
+maisVendido _=[]
+
+--Mostrar Carro mais Vendido
+chamar::IO()
+chamar = do
+          fF<-readFile "factura_todas.txt"
+          let lF = map words (lines (transf fF))
+          print (varredura (trata (maior (impr (maisVendido lF)))) (maisVendido lF))
+          putStrLn ("")

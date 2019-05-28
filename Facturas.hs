@@ -1,6 +1,8 @@
 module Facturas where
 import Estrutura
 
+
+
 transf::String->String
 transf []=[]
 transf (x:xs)|(x==',')||(x=='-')=['\t']++transf xs
@@ -9,9 +11,9 @@ transf (x:xs)|(x==',')||(x=='-')=['\t']++transf xs
              |(x== '"')=[' ']++transf xs
              |otherwise =[x]++transf xs
 
-buscar= busca 1
+buscarFactura= busca 1
 
-buscaData daT = buscaDa 1 daT
+buscaFacturaData daT = buscaDa 1 daT
 
 busca codFactur= do
         fF<-readFile "factura_clientes.txt"
@@ -121,5 +123,7 @@ listFacturasC ((cod,cli,date):xs)="\n___________________________________________
 listFacturasC []=[]
 buscaNome ((codigo, nome, preco, categoria, marca, tipo):xs) codi |((show codigo)==(show codi)) = "Nome: "++nome++"Marca: "++(show marca)
                                                                   |otherwise = buscaNome xs codi
+
+
 
 

@@ -4,6 +4,7 @@ import Preco
 import Dados
 import Compra
 import Mais_Vendido
+import Facturas
 
 
 --menu adjuto para chamar a função meuPreco do modulo Preco
@@ -19,10 +20,29 @@ verPreco=do
       c<-getLine
       verPreco
 
+--menu adjuto para chamar a função meuPreco do modulo Preco
+listar_facturas_Data::IO()
+listar_facturas_Data=do
+      --putStr "\n------------------- Menu Ver Factura Daiara ------------------\n"
+      putStr("Digite a data:")
+      datA<-readLn
+      buscaFacturaData datA
+      putStr("Prima qualquer tecla seguido de Enter para voltar ")
+      c<-getLine
+      main
+
 --menu adjuto para chamar a função listar do modulo Dados
 listar_dados::IO()
 listar_dados = do
                 listar
+                putStrLn "\nDIGITE {ENTER} PARA CONTINUAR"
+                a <- getLine
+                main
+
+--menu adjuto para chamar a função listar Factura do modulo Facturas
+listar_facturas::IO()
+listar_facturas= do
+                buscarFactura
                 putStrLn "\nDIGITE {ENTER} PARA CONTINUAR"
                 a <- getLine
                 main
@@ -60,8 +80,9 @@ main = do
               2-> listar_dados
               3-> efectuarCompra
               4-> putStrLn ("Consultar Factura "++op)
-              5-> putStrLn ("Ver Factura do diário "++op)
-              6-> putStrLn ("Ver todas Facturas "++op)
+              5-> listar_facturas_Data
+              6-> listar_facturas
               7-> carroMaisVendido
               8-> putStrLn (" ")
               _-> main
+

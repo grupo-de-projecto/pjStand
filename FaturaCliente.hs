@@ -52,7 +52,7 @@ facturaDados [] codigo=[]
 
 
 listFacturas ((cod,total,valorPago,troco,date):xs)="Codigo: "++show(cod)++"| Total"++show(total)++"| ValorPago: "++show(valorPago)++"| Troco: "++show(troco)++"|Data: "++date ++"\n"
-
+listFacturas []= "Factura Inexistente"
 
 
 buscaNome ((codigo, nome, preco, categoria, marca, tipo):xs) codi |((show codigo)==(show codi)) = "Nome: "++nome++"Marca: "++(show marca)

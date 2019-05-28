@@ -33,7 +33,7 @@ type Factura = (Codigo, LinhasFacturas, Total, ValorPago, Troco, Data)
 
 type Facturas = [Factura]
 
-type FacturaFich=(Codigo,Nome,Nome,PrecoUnitario,Quantidade,Subtotal,Total,ValorPago,Troco,Tipo,Marca,Categoria,Telefone,String)
+type FacturaFich=(Codigo,Nome,Codigo,Nome,PrecoUnitario,Quantidade,Subtotal,Total,ValorPago,Troco,Tipo,Marca,Categoria,Telefone,String)
 type FacturasFich=[FacturaFich]
 
 

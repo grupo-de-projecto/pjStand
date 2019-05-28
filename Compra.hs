@@ -128,7 +128,7 @@ verificarValorPago valor total = do if ((read valor)<total) then do
 
 
 compra= do
-        fF<-readFile "factura_todas.txt"
+        fF<-readFile "factura_clientes.txt"
         
         let l=map words (lines (transfo fF))
             listaP=linhasCod l

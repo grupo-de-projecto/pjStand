@@ -3,7 +3,7 @@ module Main where
 import Preco
 import Dados
 import Compra
-import CarregarFicheiro
+import Mais_Vendido
 
 
 --menu adjuto para chamar a função meuPreco do modulo Preco
@@ -28,8 +28,8 @@ listar_dados = do
                 main
 
 --menu adjunto para chamar a função compra do modulo Compra
-comprar::IO()
-comprar = do
+efectuarCompra::IO()
+efectuarCompra = do
             compra
             putStrLn "\n COMPRA EFECTUADO COM SUCESSO!\n\n\n"
             main
@@ -58,8 +58,10 @@ main = do
             case read(op) of
               1-> verPreco
               2-> listar_dados
-              3-> compra
+              3-> efectuarCompra
               4-> putStrLn ("Consultar Factura "++op)
               5-> putStrLn ("Ver Factura do diário "++op)
               6-> putStrLn ("Ver todas Facturas "++op)
               7-> carroMaisVendido
+              8-> putStrLn (" ")
+              _-> main

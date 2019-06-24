@@ -52,5 +52,11 @@ chamar::IO()
 chamar = do
           fF<-readFile "factura_todas.txt"
           let lF = map words (lines (transf fF))
-          print (varredura (trata (maior (impr (maisVendido lF)))) (maisVendido lF))
+          putStrLn (listLinhasFacturas(varredura (trata (maior (impr (maisVendido lF)))) (maisVendido lF)) add)
           putStrLn ("")
+listLinhasFacturas::[(Codigo, PrecoUnitario, Quantidade, Subtotal)]->Automoveis->String
+listLinhasFacturas [] _=[]
+listLinhasFacturas ((cod,pu,qtd,sub):xs) l="Codigo Produto: "++show(cod)++"|"++(buscaNome l cod)++"| PrecoU:"++show(pu)++"| Quantidade: "++show(qtd)++"| SubTotal: "++show(sub)++"\n"++listLinhasFacturas xs l
+
+buscaNome ((codigo, nome, preco, categoria, marca, tipo):xs) codi |((show codigo)==(show codi)) = "Nome: "++nome++"Marca: "++(show marca)
+                                                                  |otherwise = buscaNome xs codi

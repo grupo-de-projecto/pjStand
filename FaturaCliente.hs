@@ -39,19 +39,20 @@ linhasFactura [] codigo=[]
 
 
 
-facturaDados ([cod,_,_,_,_,_,_,total,valorPago,troco,_,_,_,_,dia,mes,ano]:xs) codigo|(cod == (show codigo))=let cod1=(read cod)::Codigo
+facturaDados ([cod,n,_,_,_,_,_,total,valorPago,troco,_,_,_,_,dia,mes,ano]:xs) codigo|(cod == (show codigo))=let cod1=(read cod)::Codigo
+                                                                                                                n1= n
                                                                                                                 t=(read total)::Total
                                                                                                                 vP=(read valorPago)::ValorPago
                                                                                                                 tr=(read troco)::Troco
                                                                                                                 date=ano++"-"++mes++"-"++dia
-                                                                                                in (cod1,t,vP,tr,date):(facturaDados xs codigo)
+                                                                                                in (cod1,n1,t,vP,tr,date):(facturaDados xs codigo)
                                                                                      |otherwise=facturaDados xs codigo
 facturaDados [] codigo=[]
 
 
 
 
-listFacturas ((cod,total,valorPago,troco,date):xs)="Codigo: "++show(cod)++"| Total"++show(total)++"| ValorPago: "++show(valorPago)++"| Troco: "++show(troco)++"|Data: "++date ++"\n"
+listFacturas ((cod,n,total,valorPago,troco,date):xs)="Codigo: "++show(cod)++"Nome Pessoa: "++show(n)++"| Total"++show(total)++"| ValorPago: "++show(valorPago)++"| Troco: "++show(troco)++"|Data: "++date ++"\n"
 listFacturas []= "Factura Inexistente"
 
 

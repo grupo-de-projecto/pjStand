@@ -37,10 +37,11 @@ type FacturaFich=(Codigo,Nome,Codigo,Nome,PrecoUnitario,Quantidade,Subtotal,Tota
 type FacturasFich=[FacturaFich]
 
 
-automovel1=(1,"ricardo",12.43,Ligeiro,Jaguar,Carro)
-automovel2=(2,"ricardo neves",12.43,Ligeiro,Toyota,Carro)
-automovel3=(3,"Mingota",12.43,Ligeiro,Bmw,Carro)
-automovel4=(4,"Teste",12.43,Ligeiro,Honda,Moto)
+automovel1=(1,"Land Cruiser LC76",21036051.85,Ligeiro,Toyota,Carro)
+automovel2=(2,"XF",24690000,Ligeiro,Jaguar,Carro)
+automovel3=(3,"Ace",200000,Ligeiro,Honda,Moto)
+automovel4=(4,"Fortuner AUT", 22354247.85,Ligeiro,Toyota,Carro)
+
 
 add::Automoveis
 add = [automovel1,automovel2,automovel3,automovel4]

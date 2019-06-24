@@ -1,6 +1,7 @@
 module Mais_Vendido where
 import Estrutura
 import CarregarFicheiro
+import System.IO
 
 
 
@@ -53,6 +54,7 @@ chamar = do
           fF<-readFile "factura_todas.txt"
           let lF = map words (lines (transf fF))
           putStrLn (listLinhasFacturas(varredura (trata (maior (impr (maisVendido lF)))) (maisVendido lF)) add)
+          escrever (listLinhasFacturas(varredura (trata (maior (impr (maisVendido lF)))) (maisVendido lF)) add)
           putStrLn ("")
 listLinhasFacturas::[(Codigo, PrecoUnitario, Quantidade, Subtotal)]->Automoveis->String
 listLinhasFacturas [] _=[]
@@ -60,3 +62,11 @@ listLinhasFacturas ((cod,pu,qtd,sub):xs) l="Codigo Produto: "++show(cod)++"|"++(
 
 buscaNome ((codigo, nome, preco, categoria, marca, tipo):xs) codi |((show codigo)==(show codi)) = "Nome: "++nome++"Marca: "++(show marca)
                                                                   |otherwise = buscaNome xs codi
+
+
+escrever x = do
+
+    arquivo <- openFile "estatisticas.txt" WriteMode
+    hPutStr arquivo x
+    hFlush arquivo
+    hClose arquivo
